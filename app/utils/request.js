@@ -31,6 +31,16 @@ function checkStatus(response) {
   throw error;
 }
 
+export function requestAll(urls, options) {
+  return Promise.all(
+    urls.map(url =>
+      fetch(url, options)
+        .then(checkStatus)
+        .then(parseJSON),
+    ),
+  );
+}
+
 /**
  * Requests a URL, returning a promise
  *

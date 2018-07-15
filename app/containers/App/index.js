@@ -29,7 +29,11 @@ import {
   makeSelectWeatherForecasts,
   makeSelectLoading,
   makeSelectError,
+  makeSelectDateTime,
+  makeSelectCurrentForecast,
 } from './selectors';
+import TimeLine from 'components/TimeLine';
+import { changeDateTime } from './actions';
 
 const withReducer = injectReducer({ key: 'map', reducer });
 const withSaga = injectSaga({
@@ -37,15 +41,35 @@ const withSaga = injectSaga({
   saga,
 });
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToMapProps = createStructuredSelector({
   markers: makeSelectWeatherForecasts(),
 });
 
-const MyMap = compose(
+const mapStateToTimeLineProps = createStructuredSelector({
+  dateTime: makeSelectDateTime(),
+  currentForecast: makeSelectCurrentForecast(),
+});
+
+function mapDispatchToTimeLineProps(dispatch) {
+  return {
+    onSetDateTime: dt => dispatch(changeDateTime(dt)),
+  };
+}
+
+const ConnectedMap = compose(
   withSaga,
   withReducer,
-  connect(mapStateToProps),
-)(props => <Map markers={props.markers} />);
+  connect(mapStateToMapProps),
+)(props => <Map {...props} />);
+
+const ConnectedTimeLine = compose(
+  withSaga,
+  withReducer,
+  connect(
+    mapStateToTimeLineProps,
+    mapDispatchToTimeLineProps,
+  ),
+)(props => <TimeLine {...props} />);
 
 class App extends React.Component {
   componentDidMount() {
@@ -57,7 +81,8 @@ class App extends React.Component {
     return (
       <RebassProvider>
         <div className="nav" />
-        <MyMap />
+        <ConnectedMap />
+        <ConnectedTimeLine />
         <Flex className="container">
           <Switch>
             <Route exact path="/" component={HomePage} />

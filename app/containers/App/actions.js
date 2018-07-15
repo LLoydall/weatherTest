@@ -11,6 +11,7 @@ import {
  * @return {object} An action object with a type of CHANGE_DATE_TIME
  */
 export function changeDateTime(dt) {
+  console.log(dt);
   return {
     type: CHANGE_DATE_TIME,
     dt,
@@ -35,10 +36,10 @@ export function loadWeatherForecasts() {
  *
  * @return {object}      An action object with a type of LOAD_WEATHER_FORECASTS_SUCCESS passing the forecasts
  */
-export function weatherForecastsLoaded(forecasts) {
+export function weatherForecastsLoaded(weatherForecasts) {
   return {
     type: LOAD_WEATHER_FORECASTS_SUCCESS,
-    forecasts,
+    weatherForecasts,
   };
 }
 

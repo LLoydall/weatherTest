@@ -9,7 +9,7 @@ import {
   weatherForecastsLoadingError,
 } from 'containers/App/actions';
 import towns from './northwales';
-import request from 'utils/request';
+import { requestAll } from 'utils/request';
 
 /**
  * Github weatherForecasts request/response handler
@@ -21,8 +21,8 @@ export function* getWeatherForecasts() {
   try {
     // Call our request helper (see 'utils/request')
     const weatherForecasts = yield call(
-      Promise.all,
-      towns.map(town => request(`${apiUrl}&id=${town.id}`)),
+      requestAll,
+      towns.map(town => `${apiUrl}&id=${town.id}`),
     );
     yield put(weatherForecastsLoaded(weatherForecasts));
   } catch (err) {

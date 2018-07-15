@@ -20,8 +20,15 @@ class Map extends React.Component {
     zoom: 9,
   };
   render() {
-    console.log(this.props);
-    let { markers } = this.props;
+    const { markers } = this.props;
+    const mappedMarkers = markers.map(m => ({
+      lat: m.city.coord.lat,
+      lng: m.city.coord.lon,
+      key: m.city.id,
+      icon: m.weather.weather[0].icon,
+      description: m.weather.weather[0].description,
+    }));
+
     return (
       // Important! Always set the container height explicitly
       <div
@@ -39,7 +46,10 @@ class Map extends React.Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          {...markers.map(m => <MapMarker lat={m.city.lat} lng={m.city.lng} />)}
+          {mappedMarkers.map(m => {
+            const Marker = <MapMarker {...m} />;
+            return Marker;
+          })}
         </GoogleMapReact>
       </div>
     );
