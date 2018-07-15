@@ -87,4 +87,10 @@ injectGlobal`
   .axis--y path {
     display: none;
   }
+
+  @media(max-width: 700px){
+    body{
+      font-size: .8em
+    }
+  }
 `;

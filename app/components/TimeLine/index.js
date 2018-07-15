@@ -25,7 +25,7 @@ class TimeLine extends React.Component {
       bottom: 0,
       left: 50,
     };
-    const width = 960 - margin.left - margin.right;
+    const width = Math.min(window.innerWidth, 960) - margin.left - margin.right;
     const height = 250 - margin.top - margin.bottom;
 
     d3.select('svg')
@@ -52,10 +52,10 @@ class TimeLine extends React.Component {
 
     const xAxis = d3
       .axisBottom(x)
-      .ticks(d3.timeHour.every(12))
+      .ticks(d3.timeHour.every(24))
       .tickSizeInner(10)
       .tickSizeOuter(0)
-      .tickFormat(d3.timeFormat('%m/%d %H:%M'));
+      .tickFormat(d3.timeFormat('%m/%d'));
 
     // const hours = x.ticks(d3.timeHour.every(3));
     // const days = x.ticks(d3.timeDay);
