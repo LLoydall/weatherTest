@@ -10,16 +10,14 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-
+import { Box } from 'rebass';
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <Box width={2 / 3} px={2} m="auto" className="page-content">
+        <h1>Weather for Northwest Wales</h1>
+      </Box>
     );
   }
 }

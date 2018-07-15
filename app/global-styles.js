@@ -6,6 +6,7 @@ injectGlobal`
   body {
     height: 100%;
     width: 100%;
+    
   }
 
   body {
@@ -17,9 +18,17 @@ injectGlobal`
   }
 
   #app {
+    position: absolute;
+    top:0;
     background-color: #fafafa;
     min-height: 100%;
     min-width: 100%;
+  }
+  .container{
+    position: absolute;
+    width: 100%;
+    top:0;
+    z-index:1
   }
 
   p,

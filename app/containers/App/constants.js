@@ -8,3 +8,13 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
+export const LOAD_WEATHER_FORECASTS =
+  'wiproWeatherApp/App/LOAD_WEATHER_FORECASTS';
+
+export const LOAD_WEATHER_FORECASTS_SUCCESS =
+  'wiproWeatherApp/App/LOAD_WEATHER_FORECASTS_SUCCESS';
+
+export const LOAD_WEATHER_FORECASTS_ERROR =
+  'wiproWeatherApp/App/LOAD_WEATHER_FORECASTS_ERROR';
+
+export const CHANGE_DATE_TIME = 'wiproWeatherApp/App/CHANGE_DATE_TIME';
