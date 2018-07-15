@@ -43,7 +43,8 @@ function appReducer(state = initialState, action) {
       console.log(ticks.find(t => action.dt + 60 * 60 * 1000 < t));
       return state.set(
         'dateTime',
-        ticks.find(t => action.dt + 60 * 60 * 1000 < t) || ticks[ticks.length],
+        ticks.find(t => action.dt + 60 * 60 * 1000 < t) ||
+          ticks[ticks.length - 1],
       );
     case LOAD_WEATHER_FORECASTS:
       return state
